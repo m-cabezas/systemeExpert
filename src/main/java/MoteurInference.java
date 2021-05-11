@@ -4,7 +4,7 @@ public class MoteurInference {
 
     public static void main(String[] args) {
         BaseFait baseFaits = new BaseFait();
-        ArrayList<Regle> baseConnaissance = new ArrayList<>();
+        BaseConnaissance baseConnaissance = new BaseConnaissance();
 
         // Regle 1
         ArrayList<String>  premisses = new ArrayList<>();
@@ -26,27 +26,31 @@ public class MoteurInference {
         Regle regle3 = new Regle();
         regle3.creer(premisses, "problemeStarter");
 
-        baseConnaissance.add(regle1);
-        baseConnaissance.add(regle2);
-        baseConnaissance.add(regle3);
+        baseConnaissance.ajouter(regle1);
+        baseConnaissance.ajouter(regle2);
+        baseConnaissance.ajouter(regle3);
 
-        ArrayList<String> faits = new ArrayList<>();
-        faits.add("!reservoirVide");
-        faits.add("pharesFonctionnent");
-        faits.add("!moteurDemarre");
+        ArrayList<Fait> faits = new ArrayList<>();
+        faits.add(new Fait("!reservoirVide"));
+        faits.add(new Fait("pharesFonctionnent"));
+        faits.add(new Fait("!moteurDemarre"));
 
         baseFaits.creer(faits);
 
+        // Code
         int i = 0;
         while (baseFaits.un_fait(i) != null) {
-            String tmpFait = baseFaits.un_fait(i);
-            for (Regle regle : baseConnaissance) {
-                if(regle.appartient(tmpFait)) {
-                    regle.supprimer(tmpFait);
+            int j = 0;
+            Fait fait = baseFaits.un_fait(i);
+            while (baseConnaissance.une_regle(j) != null) {
+                Regle regle = baseConnaissance.une_regle(j);
+                if(regle.appartient(fait.getFait())) {
+                    regle.supprimer(fait.getFait());
                 }
                 if(regle.vide()) {
-                    baseFaits.ajouter(regle.getConclusion());
+                    baseFaits.ajouter(new  Fait(regle.getConclusion()));
                 }
+                j++;
             }
             i++;
         }
@@ -54,7 +58,7 @@ public class MoteurInference {
         // Conclusion
         i = 0;
         while (baseFaits.un_fait(i) != null) {
-            System.out.println(baseFaits.un_fait(i));
+            System.out.println(baseFaits.un_fait(i).getFait());
             i++;
         }
 
