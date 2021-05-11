@@ -12,6 +12,10 @@ public class Regle {
         this.conclusion = "";
     }
 
+    public String getConclusion() {
+        return conclusion;
+    }
+
     public void creer(ArrayList<String> premisses, String conclusion) {
         //Saisir des premisses tant que l'utilisateur le demande
 //        System.out.println("\t Saisir règle : ");
