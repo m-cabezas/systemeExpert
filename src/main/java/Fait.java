@@ -5,6 +5,7 @@ public class Fait {
         this.fait = fait;
     }
 
+
     public void setFait(String fait){
         this.fait = fait;
     }
@@ -13,6 +14,12 @@ public class Fait {
         return fait;
     }
 
+    /**
+     * Redéfinition de la méthode equals afin que la base de faits puisse utliser la méthode "contains"
+     * pour comparer deux faits
+     * @param o
+     * @return
+     */
     @Override
     public boolean equals(Object o) {
         if (o == this) {

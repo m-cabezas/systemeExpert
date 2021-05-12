@@ -12,40 +12,36 @@ public class Regle {
         this.conclusion = "";
     }
 
+    /**
+     * Donne la conclusion de la règle
+     * @return la conclusion de la règle
+     */
     public String getConclusion() {
         return conclusion;
     }
 
+    /**
+     * Crée la règle
+     * @param premisses liste des premises
+     * @param conclusion la conclusion de la règle
+     */
     public void creer(ArrayList<String> premisses, String conclusion) {
-        //Saisir des premisses tant que l'utilisateur le demande
-//        System.out.println("\t Saisir règle : ");
-//        boolean suite = true;
-//        Scanner keyboard = new Scanner(System.in);
-//        while(suite) {
-//            System.out.print("\tSaisir premisse : ");
-//            premisses.add(keyboard.nextLine());
-//            System.out.print("\n\tEncore? (y/n)");
-//            String res = keyboard.nextLine();
-//            while( !res.equals("y") || !res.equals("n")) {
-//                if(res == "y"){
-//                    suite = false;
-//                }
-//
-//                res = keyboard.nextLine();
-//                System.out.print("\nTaper y ou n");
-//            }
-//        }
-//        //Saisir une conclusion
-//        System.out.print("\tSaisir conclusion: ");
-//        conclusion = keyboard.nextLine();
         this.premisses = premisses;
         this.conclusion = conclusion;
     }
 
+    /**
+     * Suprrime de la règle la premisse passée en paramètre
+     * @param premisse la premisse à supprimer
+     */
     public void supprimer(String premisse) {
         premisses.remove(premisse);
     }
 
+    /**
+     * Indique si la règle a encore des premisses
+     * @return true si la liste est vide, false sinon
+     */
     public boolean vide() {
         return premisses.isEmpty();
     }
